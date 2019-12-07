@@ -21,6 +21,7 @@
     "@types/express-session": "^1.15.13",
     "@types/graphql": "*",
     "@types/helmet": "^0.0.44",
+    "@types/http-proxy-middleware": "^0.19.3",
     "@types/morgan": "^1.7.36",
     "@types/passport": "^1.0.0",
     "@types/passport-github": "^1.1.5",
@@ -33,6 +34,7 @@
     "express-session": "^1.16.2",
     "graphile-utils": "^4.5.2",
     "helmet": "^3.21.1",
+    "http-proxy-middleware": "^0.20.0",
     "lodash": "^4.17.15",
     "morgan": "^1.9.1",
     "next": "^9.0.3",
@@ -46,6 +48,7 @@
     "ws": "^7.1.2"
   },
   "devDependencies": {
-    "graphql": "^14.4.2"
+    "graphql": "^14.4.2",
+    "http-proxy-middleware": "^0.20.0"
   }
 }
