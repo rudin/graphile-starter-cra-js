@@ -8,3 +8,4 @@ dist
 /@app/graphql/index.*
 .agignore
 *.tsbuildinfo
+.DS_Store

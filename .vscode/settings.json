@@ -17,7 +17,7 @@
   "files.trimTrailingWhitespace": true,
 
   // ESLint calls prettier for these types already, so don't let them squabble
-  "javascript.format.enable": false,
+  "javascript.format.enable": true,
   "typescript.format.enable": false,
   "prettier.disableLanguages": [
     "javascript",
@@ -26,10 +26,10 @@
     "typescriptreact"
   ],
   "[javascript]": {
-    "editor.formatOnSave": false
+    "editor.formatOnSave": true
   },
   "[javascriptreact]": {
-    "editor.formatOnSave": false
+    "editor.formatOnSave": true
   },
   "[typescript]": {
     "editor.formatOnSave": false

@@ -1,2 +1,50 @@
-import React from 'react'
-export default () => <div>Signup</div>
+import React from "react";
+import useForm from "react-hook-form";
+
+export default () => {
+  const { register, handleSubmit } = useForm(); // watch, errors
+
+  const onSubmit = data => {
+    console.log("register");
+    console.log({ data });
+    // login(data)
+    // navigate("/you")
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} noValidate={true} style={{ display: "flex", flexDirection: "column", width: 300 }}>
+      <input
+        name="name"
+        type="name"
+        ref={register({ required: true, minLength: 2 })}
+        autoFocus
+        placeholder="name"
+      />
+      <input
+        name="username"
+        type="username"
+        ref={register({ required: true, minLength: 2 })}
+        placeholder="username"
+      />
+      <input
+        name="email"
+        type="email"
+        ref={register({ required: true, minLength: 2 })}
+        placeholder="email"
+      />
+      <input
+        name="password"
+        type="password"
+        ref={register({ required: true, minLength: 2 })}
+        placeholder="password"
+      />
+      <input
+        name="confirm"
+        type="password"
+        ref={register({ required: true, minLength: 2 })}
+        placeholder="conform"
+      />
+      <button type="submit">Register</button>
+    </form>
+  );
+};
