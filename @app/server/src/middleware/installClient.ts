@@ -10,7 +10,7 @@ const isDev = process.env.NODE_ENV !== "production";
 export default async function installClient(app: Express) {
 
   if (isDev) {
-    const apiProxy = proxy('http://localhost:3000', {ws: true});
+    const apiProxy = proxy('http://localhost:3007', {ws: true});
     app.use('/', apiProxy);
   } else {
     app.use(express.static(`${__dirname}/../../../client/build`))
