@@ -12,7 +12,7 @@ export default () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate={true} style={{ display: "flex", flexDirection: "column", width: 300 }}>
+    <form onSubmit={handleSubmit(onSubmit)} noValidate={true} style={{ display: "flex", flexDirection: "column", width: 300, height: 200, justifyContent: 'space-between' }}>
       <input
         name="name"
         type="name"
