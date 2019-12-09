@@ -1,5 +1,6 @@
 import { Server } from "http";
 import express, { Express } from "express";
+import cors from "cors"
 import * as middleware from "./middleware";
 import { makeShutdownActions, ShutdownAction } from "./shutdownActions";
 import { Middleware } from "postgraphile";
@@ -42,6 +43,19 @@ export async function makeApp({
    * Our Express server
    */
   const app = express();
+
+  if (isDev) {
+    const whitelist = ["http://localhost:3007"]
+    const corsOptions = {
+    origin: (origin:any, callback: any) => {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true)
+    } else {
+      callback(new Error("Not allowed by CORS"))
+    }
+    }}
+    app.use(cors(corsOptions))
+  }
 
   /*
    * Getting access to the HTTP server directly means that we can do things

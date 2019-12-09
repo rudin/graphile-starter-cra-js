@@ -1,14 +1,28 @@
 import React from "react";
 import useForm from "react-hook-form";
+// import { useRegisterMutation } from "@app/graphql";
+import { useMutation } from "@apollo/react-hooks";
+import { loader } from 'graphql.macro';
+const REGISTER_MUTATION = loader("../graphql/Register.graphql")
 
 export default () => {
-  const { register, handleSubmit } = useForm(); // watch, errors
+  const { register, handleSubmit, watch, errors } = useForm()
+  const [registerMutation, { data }] = useMutation(REGISTER_MUTATION)
 
   const onSubmit = data => {
     console.log("register");
     console.log({ data });
     // login(data)
     // navigate("/you")
+    const values = data;
+    registerMutation({
+      variables: {
+        username: values.username,
+        email: values.email,
+        password: values.password,
+        name: values.name,
+      },
+    }).then(result => console.log(result))
   };
 
   return (
