@@ -69,6 +69,10 @@
       "**/cypress"
     ]
   },
+  "prettier": {
+    "trailingComma": "es5",
+    "proseWrap": "always"
+  },
   "jest": {
     "roots": [
       "<rootDir>/@app"
