@@ -47,6 +47,7 @@ export async function makeApp({
   if (isDev) {
     const whitelist = ["http://localhost:3007"]
     const corsOptions = {
+      credentials: true,
     origin: (origin:any, callback: any) => {
     if (whitelist.indexOf(origin) !== -1 || !origin) {
       callback(null, true)

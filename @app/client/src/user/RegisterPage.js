@@ -1,32 +1,42 @@
-import React from "react";
-import useForm from "react-hook-form";
-// import { useRegisterMutation } from "@app/graphql";
-import { useMutation } from "@apollo/react-hooks";
-import { loader } from 'graphql.macro';
+import React from "react"
+import useForm from "react-hook-form"
+import { useMutation } from "@apollo/react-hooks"
+import { loader } from "graphql.macro"
 const REGISTER_MUTATION = loader("../graphql/Register.graphql")
 
 export default () => {
   const { register, handleSubmit, watch, errors } = useForm()
   const [registerMutation, { data }] = useMutation(REGISTER_MUTATION)
+  const { refetch } = useAuth()
 
   const onSubmit = data => {
-    console.log("register");
-    console.log({ data });
-    // login(data)
-    // navigate("/you")
-    const values = data;
+    console.log("register")
+    const values = data
     registerMutation({
       variables: {
         username: values.username,
         email: values.email,
         password: values.password,
-        name: values.name,
-      },
-    }).then(result => console.log(result))
-  };
+        name: values.name
+      }
+    }).then(result => {
+      console.log(result)
+      refetch()
+    })
+  }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate={true} style={{ display: "flex", flexDirection: "column", width: 300, height: 200, justifyContent: 'space-between' }}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      noValidate={true}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: 300,
+        height: 200,
+        justifyContent: "space-between"
+      }}
+    >
       <input
         name="name"
         type="name"
@@ -60,5 +70,5 @@ export default () => {
       />
       <button type="submit">Register</button>
     </form>
-  );
-};
+  )
+}
