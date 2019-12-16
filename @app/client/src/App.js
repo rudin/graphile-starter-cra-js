@@ -16,7 +16,7 @@ function App() {
     <GraphQLProvider>
       <AuthProvider>
         <AuthConsumer>
-          {({ user, logout }) =>
+          {({ user, logout, isAuthenticating }) =>
             user ? (
               <Router>
                 <Switch>
@@ -37,26 +37,26 @@ function App() {
                 </Switch>
               </Router>
             ) : (
-              <Router>
-                <Switch>
-                  <Route path="/" exact>
-                    <div>
-                      Welcome!
+                <Router>
+                  <Switch>
+                    <Route path="/" exact>
+                      <div>
+                        Welcome!
                       <br />
-                      <Link to="/login">Login</Link>
-                      <br />
-                      <Link to="/register">Signup</Link>
-                    </div>
-                  </Route>
-                  <Route path="/login">
-                    <LoginPage />
-                  </Route>
-                  <Route path="/register">
-                    <RegisterPage />
-                  </Route>
-                </Switch>
-              </Router>
-            )
+                        {isAuthenticating ? <div>loading...</div> : <><Link to="/login">Login</Link>
+                          <br />
+                          <Link to="/register">Signup</Link></>}
+                      </div>
+                    </Route>
+                    <Route path="/login">
+                      <LoginPage />
+                    </Route>
+                    <Route path="/register">
+                      <RegisterPage />
+                    </Route>
+                  </Switch>
+                </Router>
+              )
           }
         </AuthConsumer>
       </AuthProvider>

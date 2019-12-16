@@ -15,7 +15,7 @@ export const useUser = () => {
 export const AuthProvider = ({ children }) => {
   const client = useApolloClient()
   const [isAuthenticated, setAuthenticated] = useState(false)
-  const [isAuthenticating, setAuthenticating] = useState(false)
+  const [isAuthenticating, setAuthenticating] = useState(window.localStorage.getItem("authenticated") === "yes")
   const { loading, error, data, refetch } = useQuery(CURRENT_USER, {
     fetchPolicy: "network-only"
   })
@@ -27,10 +27,12 @@ export const AuthProvider = ({ children }) => {
         console.log("Yes! Authenticated!")
         setAuthenticating(false)
         setAuthenticated(true)
+        window.localStorage.setItem("authenticated", "yes")
       } else {
         console.log("No longer authenticated.")
         setAuthenticating(false)
         setAuthenticated(false)
+        window.localStorage.setItem("authenticated", "no")
       }
     }
   }, [loading, data])
@@ -40,6 +42,7 @@ export const AuthProvider = ({ children }) => {
     setAuthenticating(false)
     setAuthenticated(false)
     client.resetStore()
+    window.localStorage.setItem("authenticated", "no")
   }
 
   return (

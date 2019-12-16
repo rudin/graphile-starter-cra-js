@@ -8,10 +8,11 @@ const LOGIN_MUTATION = loader("../graphql/Login.graphql")
 export default () => {
   const { register, handleSubmit, watch, errors } = useForm()
   const [loginMutation, { data }] = useMutation(LOGIN_MUTATION)
-  const { refetch } = useAuth()
+  const { refetch, setAuthenticating, isAuthenticating } = useAuth()
 
   const onSubmit = data => {
     console.log("login")
+    setAuthenticating(true)
     const values = data
     loginMutation({
       variables: {
@@ -47,7 +48,8 @@ export default () => {
         ref={register({ required: true, minLength: 2 })}
         placeholder="password"
       />
-      <button type="submit">Login</button>
+      <button type="submit" disabled={isAuthenticating}>Login</button>
+      {isAuthenticating && <div>loading...</div>}
     </form>
   )
 }
