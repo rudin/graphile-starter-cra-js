@@ -1,6 +1,7 @@
 import React from "react"
 import useForm from "react-hook-form"
 import { useMutation } from "@apollo/react-hooks"
+import { useAuth } from "./"
 import { loader } from "graphql.macro"
 const REGISTER_MUTATION = loader("../graphql/Register.graphql")
 

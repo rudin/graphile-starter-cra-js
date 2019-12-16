@@ -47,7 +47,7 @@ export default () => {
         ref={register({ required: true, minLength: 2 })}
         placeholder="password"
       />
-      <button type="submit">Register</button>
+      <button type="submit">Login</button>
     </form>
   )
 }

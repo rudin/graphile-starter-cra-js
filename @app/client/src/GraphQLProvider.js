@@ -23,6 +23,7 @@ function makeClientSideLink(ROOT_URL) {
     uri: `${ROOT_URL}/graphql`,
     credentials: "include"
   })
+  // const ws = (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') ? "ws":"wss"
   wsClient = new SubscriptionClient(
     `${ROOT_URL.replace(/^http/, "ws")}/graphql`,
     {
@@ -47,10 +48,7 @@ function makeClientSideLink(ROOT_URL) {
 }
 
 export default ({ initialState, children }) => {
-  const ROOT_URL = process.env.REACT_APP_ROOT_URL
-  if (!ROOT_URL) {
-    throw new Error("ROOT_URL envvar is not set")
-  }
+  const ROOT_URL = process.env.REACT_APP_ROOT_URL || window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + '5678' : '')
 
   const onErrorLink = onError(({ graphQLErrors, networkError }) => {
     if (graphQLErrors)

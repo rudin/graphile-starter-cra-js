@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     if (!loading) {
-      if (data.currentUser && isAuthenticated === false) {
+      if (data ?.currentUser && isAuthenticated === false) {
         console.log("Yes! Authenticated!")
         setAuthenticating(false)
         setAuthenticated(true)
