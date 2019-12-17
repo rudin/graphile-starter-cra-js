@@ -1,13 +1,11 @@
 import React from "react"
 import useForm from "react-hook-form"
-import { useMutation } from "@apollo/react-hooks"
 import { useAuth } from "./"
-import { loader } from "graphql.macro"
-const LOGIN_MUTATION = loader("../graphql/Login.graphql")
+import { useLoginMutation } from "@app/graphql";
 
 export default () => {
   const { register, handleSubmit, watch, errors } = useForm()
-  const [loginMutation, { data }] = useMutation(LOGIN_MUTATION)
+  const [loginMutation, { data }] = useLoginMutation()
   const { refetch, setAuthenticating, isAuthenticating } = useAuth()
 
   const onSubmit = data => {

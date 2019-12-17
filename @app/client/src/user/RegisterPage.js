@@ -1,13 +1,11 @@
 import React from "react"
 import useForm from "react-hook-form"
-import { useMutation } from "@apollo/react-hooks"
 import { useAuth } from "./"
-import { loader } from "graphql.macro"
-const REGISTER_MUTATION = loader("../graphql/Register.graphql")
+import { useRegisterMutation } from "@app/graphql";
 
 export default () => {
   const { register, handleSubmit, watch, errors } = useForm()
-  const [registerMutation, { data }] = useMutation(REGISTER_MUTATION)
+  const [registerMutation, { data }] = useRegisterMutation()
   const { refetch } = useAuth()
 
   const onSubmit = data => {
