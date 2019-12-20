@@ -1,6 +1,6 @@
 name: Node CI
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -40,5 +40,6 @@ jobs:
           yarn build
           yarn lint
           yarn test
+          yarn depcheck
         env:
           CI: true
