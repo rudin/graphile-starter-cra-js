@@ -4,6 +4,7 @@ import * as middleware from "./middleware";
 import { makeShutdownActions, ShutdownAction } from "./shutdownActions";
 import { Middleware } from "postgraphile";
 import { sanitizeEnv } from "./utils";
+import cors from "cors";
 
 // Server may not always be supplied, e.g. where mounting on a sub-route
 export function getHttpServer(app: Express): Server | void {
@@ -42,6 +43,21 @@ export async function makeApp({
    * Our Express server
    */
   const app = express();
+
+  if (isDev) {
+    const whitelist = ["http://localhost:3007"]
+    const corsOptions = {
+      credentials: true,
+      origin: (origin: any, callback: any) => {
+        if (whitelist.indexOf(origin) !== -1 || !origin) {
+          callback(null, true);
+        } else {
+          callback(new Error("Not allowed by CORS"));
+        }
+      },
+    };
+    app.use(cors(corsOptions));
+  }
 
   /*
    * Getting access to the HTTP server directly means that we can do things
