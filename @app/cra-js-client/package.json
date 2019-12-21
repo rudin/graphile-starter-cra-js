@@ -34,7 +34,7 @@
     "ws": "^7.2.0"
   },
   "scripts": {
-    "dev": "BROWSER=none react-scripts start",
+    "dev": "BROWSER=none PORT=3007 react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
