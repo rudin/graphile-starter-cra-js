@@ -12,9 +12,9 @@ export default async function installClient(app: Express) {
       res.redirect("http://localhost:3007");
     });
   } else {
-    app.use(express.static(`${__dirname}/../../../client/build`));
+    app.use(express.static(`${__dirname}/../../../cra-js-client/build`));
     app.get("*", (_req, res) => {
-      res.sendFile(`${__dirname}/../../../client/build`, "index.html");
+      res.sendFile(`${__dirname}/../../../cra-js-client/build`, "index.html");
     });
   }
 }
