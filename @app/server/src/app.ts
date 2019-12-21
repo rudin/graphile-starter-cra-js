@@ -45,7 +45,7 @@ export async function makeApp({
   const app = express();
 
   if (isDev) {
-    const whitelist = ["http://localhost:3007"]
+    const whitelist = ["http://localhost:3007", "http://localhost:5678"];
     const corsOptions = {
       credentials: true,
       origin: (origin: any, callback: any) => {
